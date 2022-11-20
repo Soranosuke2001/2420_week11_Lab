@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source /etc/backup-dir-conf/backup-dir-script.conf
+
+rsync -aPv -e "ssh -i $SSH_FILE" ${DIRECTORIES[@]} $BACKUP_HOST_NAME@$IP_ADDRESS:$DESTINATION

@@ -1,0 +1,10 @@
+[Unit]
+Description=Creates a backup directory for the list of directories specified in the configuration file
+
+[Service]
+Type=oneshot
+ExecStart=/opt/backdir/backup-dir
+User=sora
+
+[Install]
+WantedBy=multi-user.target

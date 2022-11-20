@@ -1,0 +1,11 @@
+[Unit]
+Description=Runs the backup-dir script every Friday around 01:00.
+
+[Timer]
+OnCalendar=Fri *-*-* 01:00:00
+Persistent=true
+RandomizedDelaySec=25m
+Unit=backup-dir.service
+
+[Install]
+WantedBy=timers.target
