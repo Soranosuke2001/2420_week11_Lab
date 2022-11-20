@@ -13,6 +13,7 @@ Created by: Sora Schlegel and Sethavan Sen
   - [Remove Root User Access Backup Server](#remove-root-user-access-backup-server)
   - [Accessing Backup Server From Server One](#accessing-backup-server-from-server-one)
 - [Backup Script](#backup-script)
+  - [About the Backup Script](#about-the-backup-script)
   - [Creating the Backup Script Configuration File](#creating-the-backup-script-configuration-file)
   - [Creating the Backup Script](#creating-the-backup-script)
 - [Service File](#service-file)
@@ -161,6 +162,29 @@ You have now successfully created the Backup Server that is accessible from both
 ---
 
 ## Backup Script
+
+## About the Backup Script
+
+The Backup Script will copy specific directories specified by the user from the local machine to a remote backup machine.
+
+This file is created for the `backup-dir` script, we will be creating later, to read so that the `rsync` command is able to run without the user having to change the script itself. Users will change the configuration file to specify the following:
+
+	- User name for the remote backup-server
+	- IP address of the backup-server
+	- Directores to backup in the local machine
+	- The backup-server directory to save the directories in the local machine
+
+Ways to run the `backup-dir` script:
+
+1. The user is able to manually run the file by using the `/opt/backdir/backup-dir` command.
+
+2. Run the script by using the `sudo systemctl start backup-dir.service` command.
+
+- **Note:** The `backup-dir.service` file **MUST** be created.
+
+3. The script will automatically run every Friday around 01:00.
+
+- **Note:** The `backup-dir.timer` file **MUST** be created.
 
 ### Creating the Backup Script Configuration File
 
@@ -376,4 +400,6 @@ You have now successfully created a service file to run the backup-dir script.
 ![Output after using systemctl status command](images/ss7.png)
 
 You have now successfully created a service timer to specify when to run the `backup-dir.service` file
+
+
 
