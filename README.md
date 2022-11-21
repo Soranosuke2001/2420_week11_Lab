@@ -167,7 +167,7 @@ You have now successfully created the Backup Server that is accessible from both
 
 The Backup Script will copy specific directories specified by the user from the local machine to a remote backup machine.
 
-This file is created for the `backup-dir` script, we will be creating later, to read so that the `rsync` command is able to run without the user having to change the script itself. Users will change the configuration file to specify the following:
+The `backup-dir-scrip.conf` file is created for the `backup-dir` script, we will be creating later, to read so that the `rsync` command is able to run without the user having to change the script itself. Users will change the configuration file to specify the following:
 
 	- User name for the remote backup-server
 	- IP address of the backup-server
