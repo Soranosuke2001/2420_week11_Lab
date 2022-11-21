@@ -16,6 +16,7 @@ Created by: Sora Schlegel and Sethavan Sen
   - [About the Backup Script](#about-the-backup-script)
   - [Creating the Backup Script Configuration File](#creating-the-backup-script-configuration-file)
   - [Creating the Backup Script](#creating-the-backup-script)
+  - [rsync Command Trouble Shooting Steps](#rsync-command-trouble-shooting-steps)
 - [Service File](#service-file)
 - [Service File Timer](#service-file-timer)
 
@@ -285,7 +286,9 @@ Backup-server `/home/backup-sora` directory
 
 - **Note:** I used the `tree` command which is not preinstalled. For more information, visit this **[tree command](https://www.cyberciti.biz/faq/linux-show-directory-structure-command-line/#:~:text=You%20need%20to%20use%20command,given%20directories%20each%20in%20turn.)** link.
 
-**Trouble Shooting Steps:**
+You have now successfully created a script to run the rsync command.
+
+## rsync Command Trouble Shooting Steps
 
 - If you are getting the error message `Host Key Verification Failed`, edit the `/opt/backdir/backup-dir` and use the following command instead of the original rsync command:
 
@@ -302,8 +305,6 @@ Backup-server `/home/backup-sora` directory
 	`rsync -aPv -e "ssh -i ~/.ssh/DO_server_one_key" ~/folder1 ~/folder2 backup-sora@159.223.207.71:/home/backup-sora/backups` 
 
 - For more information on the `rsync` command, you can refer to the man page by typing in the command `man rsync`.
-
-You have now successfully created a script to run the rsync command.
 
 ---
 
