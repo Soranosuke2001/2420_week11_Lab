@@ -169,10 +169,10 @@ The Backup Script will copy specific directories specified by the user from the 
 
 The `backup-dir-scrip.conf` file is created for the `backup-dir` script, we will be creating later, to read so that the `rsync` command is able to run without the user having to change the script itself. Users will change the configuration file to specify the following:
 
-	- User name for the remote backup-server
-	- IP address of the backup-server
-	- Directores to backup in the local machine
-	- The backup-server directory to save the directories in the local machine
+- User name for the remote backup-server
+- IP address of the backup-server
+- Directores to backup in the local machine
+- The backup-server directory to save the directories in the local machine
 
 Ways to run the `backup-dir` script:
 
