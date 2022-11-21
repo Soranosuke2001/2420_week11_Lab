@@ -273,7 +273,7 @@ The configuration file has been created successfully.
 	rsync -aPv -e "ssh -i $SSH_FILE" ${DIRECTORIES[@]} $BACKUP_HOST_NAME@$IP_ADDRESS:$DESTINATION
 	```
 
-4. After running the script, the copied directories will now be saved in the backup server in the `backups` folder in the home directory.
+4. After running the script, by typing in `~/wk11/backup-dir`, the copied directories will now be saved in the backup server in the `backups` folder in the home directory.
 
 Server-one `/home/sora` directory
 
@@ -284,6 +284,24 @@ Backup-server `/home/backup-sora` directory
 ![After running the script](images/ss4.png)
 
 - **Note:** I used the `tree` command which is not preinstalled. For more information, visit this **[tree command](https://www.cyberciti.biz/faq/linux-show-directory-structure-command-line/#:~:text=You%20need%20to%20use%20command,given%20directories%20each%20in%20turn.)** link.
+
+**Trouble Shooting Steps:**
+
+- If you are getting the error message `Host Key Verification Failed`, edit the `/opt/backdir/backup-dir` and use the following command instead of the original rsync command:
+
+        `rsync -aPv -e "ssh -o StrictHostKeyChecking=no -i $SSH_FILE" ${DIRECTORIES[@]} $BACKUP_HOST_NAME@$IP_ADDRESS:$DESTINATION`
+
+- If you are getting the error message `rsync Permission Denied (publickey)`, then either:
+
+  1. You are using the wrong ssh keypair file to connect
+
+  2. You did not set up the ssh keypair correctly
+
+- If the directory is not being saved to the backup-server, try running the `rsync` command itself. In server-one, run the following command:
+
+	`rsync -aPv -e "ssh -i ~/.ssh/DO_server_one_key" ~/folder1 ~/folder2 backup-sora@159.223.207.71:/home/backup-sora/backups` 
+
+- For more information on the `rsync` command, you can refer to the man page by typing in the command `man rsync`.
 
 You have now successfully created a script to run the rsync command.
 
@@ -338,20 +356,6 @@ You have now successfully created a script to run the rsync command.
 6. Check if the directories exist in the backup-server by using the `tree` command in your home directory. The screenshot below shows the `backups` directory being created after running the command `sudo systemctl start backup-dir.service`.
 
 ![backup-server directory after running backup-dir.service](images/ss8.png)
-
-**Trouble Shooting Steps:**
-
-- If you are getting the error message `Host Key Verification Failed`, edit the `/opt/backdir/backup-dir` and use the following command instead of the original rsync command:
-
-	`rsync -aPv -e "ssh -o StrictHostKeyChecking=no -i $SSH_FILE" ${DIRECTORIES[@]} $BACKUP_HOST_NAME@$IP_ADDRESS:$DESTINATION`
-
-- If you are getting the error message `rsync Permission Denied (publickey)`, then either:
-
-  1. You are using the wrong ssh keypair file to connect
-
-  2. You did not set up the ssh keypair correctly
-
-- For more information on the `rsync` command, you can refer to the man page by typing in the command `man rsync`.
 
 You have now successfully created a service file to run the backup-dir script.
 
